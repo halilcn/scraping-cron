@@ -1,4 +1,4 @@
-import getAllLinksOfAdvert from './jobs/getAllLinksOfAdvent'
+import getAllLinksOfAdvert from './jobs/getAllLinksOfAdvert'
 import getInfosOnAdvert from './jobs/getInfosOnAdvert'
 
 const hurriyetEmlakCron = async () => {
