@@ -1,5 +1,7 @@
-const saveAdvert = () => {
+import { IAdvert } from '../types'
+
+const saveAdvert = async (payload: IAdvert) => {
   return 'test'
 }
 
-export { saveAdvert }
+export default { saveAdvert }
