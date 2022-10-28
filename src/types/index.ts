@@ -10,5 +10,3 @@ export interface IAdvert {
   currentFloor: number
   furnitureStatus: string
 }
-
-export enum InitialStateAdvert {}

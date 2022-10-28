@@ -12,7 +12,7 @@ const getAllLinksOfAdvert = async () => {
       const page = await getPage(pageLink)
       const $ = load(page)
 
-      $('.img-link').each((_: number, element: Element) => {
+      $(elementClasses.advertLink).each((_: number, element: Element) => {
         allAdventLinks.push(element.attribs.href)
       })
     })
