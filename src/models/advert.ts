@@ -18,13 +18,14 @@ const Advert = new Schema(
       type: String,
       default: null,
       trim: true,
+      lowercase: true,
     },
     squareMetres: {
       type: Number,
       default: null,
     },
     buildingAge: {
-      type: [Number, null],
+      type: Number,
       default: null,
     },
     price: {
