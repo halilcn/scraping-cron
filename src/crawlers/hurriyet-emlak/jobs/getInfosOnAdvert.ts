@@ -1,7 +1,7 @@
 import { load } from 'cheerio'
 import { IAdvert } from '../../../types'
 import getPage from '../../../utils/getPage'
-import { onlyNumbersFromString } from '../../../utils/helpers'
+import { convertToNullIfNoData, onlyNumbersFromString } from '../../../utils/helpers'
 import { ADVERT_INFO_TITLES_FOR_SCRAPE, HURRIYET_EMLAK_URL } from '../utils/constants'
 import elementClasses from '../utils/element-classes'
 
@@ -39,7 +39,7 @@ const getInfosOnAdvert = async (advertLink: string): Promise<IAdvert> => {
     if (advertInfoTitle == ADVERT_INFO_TITLES_FOR_SCRAPE.furnitureStatus) advert.furnitureStatus = advertInfoValue
   })
 
-  return advert
+  return convertToNullIfNoData(advert)
 }
 
 export default getInfosOnAdvert
