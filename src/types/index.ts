@@ -9,4 +9,6 @@ export interface IAdvert {
   district: string | null
   currentFloor: number | null
   furnitureStatus: string | null
+  company: string | null
+  link: string | null
 }

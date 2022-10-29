@@ -9,3 +9,9 @@ export class UnknownError extends Error {
     super(`Unknown Error:${message}`)
   }
 }
+
+export class DatabaseSaveError extends Error {
+  constructor(message = '') {
+    super(`Database Save Error:${message}`)
+  }
+}

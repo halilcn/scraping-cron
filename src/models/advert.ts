@@ -54,6 +54,18 @@ const Advert = new Schema(
       trim: true,
       lowercase: true,
     },
+    company: {
+      type: String,
+      default: null,
+      trim: true,
+      lowercase: true,
+    },
+    link: {
+      type: String,
+      default: null,
+      trim: true,
+      lowercase: true,
+    },
   },
   {
     timestamps: true,

@@ -3,28 +3,23 @@ import getAllLinksOfAdvert from './jobs/getAllLinksOfAdvert'
 import getInfosOnAdvert from './jobs/getInfosOnAdvert'
 
 const hurriyetEmlakCron = async () => {
-  // const advertLinks = await getAllLinksOfAdvert()
+  // TODO: dış try catch ?
+  const advertLinks = await getAllLinksOfAdvert()
 
-  try {
-    const allItemsOnAdvert = await getInfosOnAdvert('/ankara-mamak-durali-alic-kiralik/daire/126040-132')
-    await advertService.saveAdvert(allItemsOnAdvert)
-  } catch (err: any) {
-    console.log('kardeş hata var')
-    console.log(err.message)
-  }
-
-  /*await Promise.all(
+  await Promise.all(
     advertLinks.map(async link => {
       try {
         const allItemsOnAdvert = await getInfosOnAdvert(link)
-
-        //await advertService.saveAdvert(allItemsOnAdvert)
+        await advertService.saveAdvert(allItemsOnAdvert)
+        console.log('saved !')
       } catch (err: any) {
-        console.log('error var.')
-        console.log(err)
+        console.log('kardeş hata var')
+        console.log(err.message)
       }
     })
-  )*/
+  )
+
+  /**/
 }
 
 export default hurriyetEmlakCron

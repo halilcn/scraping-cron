@@ -17,6 +17,8 @@ const getInfosOnAdvert = async (advertLink: string): Promise<IAdvert> => {
     district: null,
     currentFloor: null,
     furnitureStatus: null,
+    company: 'hepsiemlak',
+    link: advertLink,
   }
 
   const page = await getPage(`${HURRIYET_EMLAK_URL}${advertLink}`)
