@@ -22,7 +22,7 @@ const getInfosOnAdvert = async (advertLink: string): Promise<IAdvert> => {
   const page = await getPage(`${HURRIYET_EMLAK_URL}${advertLink}`)
   const $ = load(page)
 
-  advert.price = parseInt(onlyNumbersFromString($(elementClasses.price).text().trim())) ?? 0
+  advert.price = parseInt(onlyNumbersFromString($(elementClasses.price).text().trim()))
   advert.city = $(elementClasses.city).text().trim()
   advert.district = $(elementClasses.district).text().trim()
 
@@ -34,16 +34,14 @@ const getInfosOnAdvert = async (advertLink: string): Promise<IAdvert> => {
     if (advertInfoTitle == ADVERT_INFO_TITLES_FOR_SCRAPE.status) advert.status = advertInfoValue
     if (advertInfoTitle == ADVERT_INFO_TITLES_FOR_SCRAPE.room) advert.room = advertInfoValue
     if (advertInfoTitle == ADVERT_INFO_TITLES_FOR_SCRAPE.squareMetres) advert.squareMetres = parseInt(advertInfoValue.split(' ')[1])
-    if (advertInfoTitle == ADVERT_INFO_TITLES_FOR_SCRAPE.buildingAge) advert.buildingAge = parseInt(advertInfoValue.split(' ')[0]) ?? null
+    if (advertInfoTitle == ADVERT_INFO_TITLES_FOR_SCRAPE.buildingAge) advert.buildingAge = parseInt(advertInfoValue.split(' ')[0])
     if (advertInfoTitle == ADVERT_INFO_TITLES_FOR_SCRAPE.currentFloor) advert.currentFloor = parseInt(advertInfoValue.split(' ')[0])
     if (advertInfoTitle == ADVERT_INFO_TITLES_FOR_SCRAPE.furnitureStatus) advert.furnitureStatus = advertInfoValue
   })
 
-  const test = convertToNullIfNoData(advert)
+  console.log(convertToNullIfNoData(advert))
 
-  console.log(test)
-
-  return advert
+  return convertToNullIfNoData(advert)
 }
 
 export default getInfosOnAdvert

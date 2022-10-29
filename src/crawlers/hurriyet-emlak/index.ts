@@ -7,6 +7,7 @@ const hurriyetEmlakCron = async () => {
 
   try {
     const allItemsOnAdvert = await getInfosOnAdvert('/ankara-mamak-durali-alic-kiralik/daire/126040-132')
+    await advertService.saveAdvert(allItemsOnAdvert)
   } catch (err: any) {
     console.log('kardeş hata var')
     console.log(err.message)

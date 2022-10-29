@@ -5,7 +5,7 @@ export class TooManyRequestError extends Error {
 }
 
 export class UnknownError extends Error {
-  constructor(message = 'Unknown Error') {
-    super(message)
+  constructor(message = '') {
+    super(`Unknown Error:${message}`)
   }
 }

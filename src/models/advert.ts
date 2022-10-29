@@ -4,52 +4,52 @@ const Advert = new Schema(
   {
     advertId: {
       type: String,
-      required: true,
+      default: null,
       trim: true,
       unique: true,
     },
     status: {
       type: String,
-      required: true,
+      default: null,
       trim: true,
       lowercase: true,
     },
     room: {
       type: String,
-      required: true,
+      default: null,
       trim: true,
     },
     squareMetres: {
       type: Number,
-      required: true,
+      default: null,
     },
     buildingAge: {
       type: [Number, null],
-      required: true,
+      default: null,
     },
     price: {
       type: Number,
-      required: true,
+      default: null,
     },
     city: {
       type: String,
-      required: true,
+      default: null,
       trim: true,
       lowercase: true,
     },
     district: {
       type: String,
-      required: true,
+      default: null,
       trim: true,
       lowercase: true,
     },
     currentFloor: {
       type: Number,
-      required: true,
+      default: null,
     },
     furnitureStatus: {
       type: String,
-      required: true,
+      default: null,
       trim: true,
       lowercase: true,
     },

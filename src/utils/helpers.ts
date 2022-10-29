@@ -7,7 +7,7 @@ export const onlyNumbersFromString = (text: string) => {
 export const convertToNullIfNoData = (payload: IAdvert) => {
   const advert = payload
 
-  Object.keys(advert).map(advertKey => {
+  Object.keys(advert).forEach(advertKey => {
     const advertInfoValue = advert[advertKey as keyof IAdvert]
 
     if (typeof advertInfoValue === 'string' && advertInfoValue !== '') return
