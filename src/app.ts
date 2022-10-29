@@ -1,4 +1,4 @@
-import hurriyetEmlakCron from './crons/hurriyet-emlak'
+import hurriyetEmlakCron from './crawlers/hurriyet-emlak'
 import cron from 'node-cron'
 
 import './bootstrap'

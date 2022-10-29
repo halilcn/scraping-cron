@@ -2,8 +2,6 @@ import mongoose from 'mongoose'
 
 require('dotenv').config()
 
-console.log('içerde !!')
-
 //process.env.MONGO_DB_URI as string
 mongoose
   .connect('mongodb://localhost:27017/scrap')

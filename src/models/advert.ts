@@ -12,6 +12,7 @@ const Advert = new Schema(
       type: String,
       required: true,
       trim: true,
+      lowercase: true,
     },
     room: {
       type: String,
@@ -34,11 +35,13 @@ const Advert = new Schema(
       type: String,
       required: true,
       trim: true,
+      lowercase: true,
     },
     district: {
       type: String,
       required: true,
       trim: true,
+      lowercase: true,
     },
     currentFloor: {
       type: Number,
@@ -48,6 +51,7 @@ const Advert = new Schema(
       type: String,
       required: true,
       trim: true,
+      lowercase: true,
     },
   },
   {
