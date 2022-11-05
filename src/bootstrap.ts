@@ -1,14 +1,14 @@
 import mongoose from 'mongoose'
+import log from 'npmlog'
 
 require('dotenv').config()
 
-//process.env.MONGO_DB_URI as string
 mongoose
-  .connect('mongodb://localhost:27017/scrap')
+  .connect(process.env.MONGO_DB_URI as string)
   .then(() => {
-    console.log('Connected to mongoDB')
+    log.info('general', 'Connected to mongoDB')
   })
   .catch(err => {
-    console.log('Mongoose connect error:' + err)
+    log.error('general', 'Mongoose connect error:' + err)
     process.exit(1)
   })
