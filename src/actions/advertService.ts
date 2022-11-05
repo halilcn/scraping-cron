@@ -11,4 +11,12 @@ const saveAdvert = async (payload: IAdvert) => {
   }
 }
 
-export default { saveAdvert }
+const existAdvertByLink = async (link: string): Promise<boolean> => {
+  try {
+    return !!(await Advert.exists({ link }))
+  } catch (err: any) {
+    throw new DatabaseSaveError(err)
+  }
+}
+
+export default { saveAdvert, existAdvertByLink }

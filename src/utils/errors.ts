@@ -15,3 +15,9 @@ export class DatabaseSaveError extends Error {
     super(`Database Save Error:${message}`)
   }
 }
+
+export class SiteStructureChanged extends Error {
+  constructor(message = 'Site Structure Changed') {
+    super(message)
+  }
+}

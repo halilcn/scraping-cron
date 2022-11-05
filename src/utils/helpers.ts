@@ -18,3 +18,7 @@ export const convertToNullIfNoData = (payload: IAdvert) => {
 
   return advert
 }
+
+export const isNullAllItemsOnAdvert = (payload: IAdvert) => {
+  return Object.values(payload).every(item => item == null)
+}

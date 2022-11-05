@@ -1,26 +1,27 @@
 import { exit } from 'process'
 import advertService from '../../actions/advertService'
+import { SiteStructureChanged } from '../../utils/errors'
+import { isNullAllItemsOnAdvert } from '../../utils/helpers'
 import getAllLinksOfAdvert from './jobs/getAllLinksOfAdvert'
 import getInfosOnAdvert from './jobs/getInfosOnAdvert'
 
 const hepsiEmlakCrawler = async () => {
-  // TODO: dış try catch ?
-  const advertLinks = await getAllLinksOfAdvert()
+  try {
+    const advertLinks = await getAllLinksOfAdvert()
+    await Promise.all(
+      advertLinks.map(async link => {
+        if (!(await advertService.existAdvertByLink(link))) {
+          const allItemsOnAdvert = await getInfosOnAdvert(link)
+          if (isNullAllItemsOnAdvert(allItemsOnAdvert)) throw new SiteStructureChanged()
 
-  await Promise.all(
-    advertLinks.map(async link => {
-      try {
-        const allItemsOnAdvert = await getInfosOnAdvert(link)
-        await advertService.saveAdvert(allItemsOnAdvert)
-        console.log('saved !')
-      } catch (err: any) {
-        console.log('kardeş hata var')
-        console.log(err.message)
-      }
-    })
-  )
-
-  /**/
+          await advertService.saveAdvert(allItemsOnAdvert)
+          console.log('hepsiemlak saved !')
+        }
+      })
+    )
+  } catch (err: any) {
+    console.log(err.message)
+  }
 }
 
 export default hepsiEmlakCrawler
