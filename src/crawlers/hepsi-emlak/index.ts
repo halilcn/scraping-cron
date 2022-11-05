@@ -2,7 +2,7 @@ import advertService from '../../actions/advertService'
 import getAllLinksOfAdvert from './jobs/getAllLinksOfAdvert'
 import getInfosOnAdvert from './jobs/getInfosOnAdvert'
 
-const hurriyetEmlakCron = async () => {
+const hepsiEmlakCrawler = async () => {
   // TODO: dış try catch ?
   const advertLinks = await getAllLinksOfAdvert()
 
@@ -22,4 +22,4 @@ const hurriyetEmlakCron = async () => {
   /**/
 }
 
-export default hurriyetEmlakCron
+export default hepsiEmlakCrawler

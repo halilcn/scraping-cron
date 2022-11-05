@@ -1,10 +1,10 @@
-import hurriyetEmlakCron from './crawlers/hurriyet-emlak'
+import hepsiEmlak from './crawlers/hepsi-emlak'
 import cron from 'node-cron'
 
 import './bootstrap'
 
 console.log('cron is starting...')
-hurriyetEmlakCron()
+hepsiEmlak()
 
 /*
 cron.schedule('* * * * * *', () => {
