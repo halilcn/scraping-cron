@@ -1,3 +1,4 @@
+import { exit } from 'process'
 import advertService from '../../actions/advertService'
 import getAllLinksOfAdvert from './jobs/getAllLinksOfAdvert'
 import getInfosOnAdvert from './jobs/getInfosOnAdvert'
