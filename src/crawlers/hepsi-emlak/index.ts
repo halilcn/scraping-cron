@@ -9,6 +9,7 @@ import log from 'npmlog'
 const hepsiEmlakCrawler = async () => {
   try {
     log.info(HEPSIEMLAK_COMPANY_NAME, 'started cron...')
+
     const advertLinks = await getAllLinksOfAdvert()
     await Promise.all(
       advertLinks.map(async link => {
@@ -20,6 +21,7 @@ const hepsiEmlakCrawler = async () => {
         }
       })
     )
+
     log.info(HEPSIEMLAK_COMPANY_NAME, 'finished cron...')
   } catch (err: any) {
     log.error(HEPSIEMLAK_COMPANY_NAME, err.message)

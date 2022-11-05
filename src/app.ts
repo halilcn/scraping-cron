@@ -1,15 +1,12 @@
 import hepsiEmlak from './crawlers/hepsi-emlak'
 import cron from 'node-cron'
+import log from 'npmlog'
 
 import './bootstrap'
 
-console.log('cron is starting...')
-hepsiEmlak()
+log.info('general', 'Cron started...')
+log.info('general', 'Test')
 
-/*
-cron.schedule('* * * * * *', () => {
-  console.log('cron is starting...')
-
-  hurriyetEmlakCron()
+cron.schedule('0 0 0,2,4,6,8,10,12 * * *', async () => {
+  await hepsiEmlak()
 })
-*/
