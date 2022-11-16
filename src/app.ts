@@ -6,7 +6,9 @@ import './bootstrap'
 
 log.info('general', 'Cron started...')
 
+hepsiEmlak()
+
 //0 0 0,2,4,6,8,10,12 * * *
-cron.schedule('* * * * * *', async () => {
+cron.schedule('0 0 0,2,4,6,8,10,12 * * *', async () => {
   await hepsiEmlak()
 })

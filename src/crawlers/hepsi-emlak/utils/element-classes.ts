@@ -4,8 +4,8 @@ const elementClasses: any = {
   city: '.short-info-list > li:nth-child(1)',
   district: '.short-info-list > li:nth-child(2)',
   otherInfosBlock: '.spec-item',
-  otherInfoTitle: 'span:first-child',
-  otherInfoValue: 'span:last-child',
+  otherInfoTitle: ':first-child',
+  otherInfoValue: ':last-child',
 }
 
 export default elementClasses
