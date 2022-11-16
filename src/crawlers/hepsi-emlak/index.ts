@@ -22,6 +22,7 @@ const hepsiEmlakCrawler = async () => {
       })
     )
 
+    log.info(HEPSIEMLAK_COMPANY_NAME, `total advert link:${advertLinks.length}`)
     log.info(HEPSIEMLAK_COMPANY_NAME, 'finished cron...')
   } catch (err: any) {
     log.error(HEPSIEMLAK_COMPANY_NAME, err.message)
