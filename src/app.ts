@@ -6,9 +6,13 @@ import './bootstrap'
 
 log.info('general', 'Cron started...')
 
-hepsiEmlak()
-
-//0 0 0,2,4,6,8,10,12 * * *
-cron.schedule('0 0 0,2,4,6,8,10,12 * * *', async () => {
+const crawlers = async () => {
   await hepsiEmlak()
+}
+
+// first start
+crawlers()
+
+cron.schedule('0 0 * * * *', async () => {
+  await crawlers()
 })
