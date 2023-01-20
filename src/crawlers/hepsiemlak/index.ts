@@ -1,6 +1,6 @@
 import advertService from '../../actions/advertService'
 import { SiteStructureChanged } from '../../utils/errors'
-import { isNullAllItemsOnAdvert } from '../../utils/helpers'
+import { convertToLowerCase, isNullAllItemsOnAdvert } from '../../utils/helpers'
 import getAllLinksOfAdvert from './jobs/getAllLinksOfAdvert'
 import getInfosOnAdvert from './jobs/getInfosOnAdvert'
 import { HEPSIEMLAK_COMPANY_NAME } from './utils/constants'
@@ -17,7 +17,7 @@ const hepsiEmlakCrawler = async () => {
           const allItemsOnAdvert = await getInfosOnAdvert(link)
           if (isNullAllItemsOnAdvert(allItemsOnAdvert)) throw new SiteStructureChanged(HEPSIEMLAK_COMPANY_NAME)
 
-          await advertService.saveAdvert(allItemsOnAdvert)
+          await advertService.saveAdvert(convertToLowerCase(allItemsOnAdvert))
         }
       })
     )

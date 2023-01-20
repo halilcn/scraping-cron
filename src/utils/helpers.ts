@@ -22,3 +22,18 @@ export const convertToNullIfNoData = (payload: IAdvert) => {
 export const isNullAllItemsOnAdvert = (payload: IAdvert) => {
   return Object.values(payload).every(item => item == null)
 }
+
+export const convertToLowerCase = (payload: IAdvert) => {
+  const advert = payload
+
+  Object.keys(advert).forEach(advertKey => {
+    const advertInfoValue: any = advert[advertKey as keyof IAdvert]
+
+    if (typeof advertInfoValue === 'number') return
+    if (advertInfoValue === null) return
+
+    advert[advertKey as keyof IAdvert] = advertInfoValue.toLowerCase()
+  })
+
+  return advert
+}
