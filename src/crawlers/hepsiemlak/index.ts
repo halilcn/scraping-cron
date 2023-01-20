@@ -15,7 +15,7 @@ const hepsiEmlakCrawler = async () => {
       advertLinks.map(async link => {
         if (!(await advertService.existAdvertByLink(link))) {
           const allItemsOnAdvert = await getInfosOnAdvert(link)
-          if (isNullAllItemsOnAdvert(allItemsOnAdvert)) throw new SiteStructureChanged()
+          if (isNullAllItemsOnAdvert(allItemsOnAdvert)) throw new SiteStructureChanged(HEPSIEMLAK_COMPANY_NAME)
 
           await advertService.saveAdvert(allItemsOnAdvert)
         }

@@ -17,7 +17,7 @@ export class DatabaseSaveError extends Error {
 }
 
 export class SiteStructureChanged extends Error {
-  constructor(message = 'Site Structure Changed') {
-    super(message)
+  constructor(company: string) {
+    super(`Site Structure Changed - ${company}`)
   }
 }
