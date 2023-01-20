@@ -1,10 +1,14 @@
-import hepsiEmlak from './crawlers/hepsi-emlak'
+import hepsiEmlak from './crawlers/hepsiemlak'
 import cron from 'node-cron'
 import log from 'npmlog'
 
 import './bootstrap'
 
 log.info('general', 'Cron started...')
+
+
+// development
+return;
 
 const crawlers = async () => {
   await hepsiEmlak()
