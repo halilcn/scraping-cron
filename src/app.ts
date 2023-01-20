@@ -8,7 +8,7 @@ import './bootstrap'
 log.info('general', 'Cron started...')
 
 const crawlers = async () => {
-  // await hepsiEmlak()
+  await hepsiEmlak()
   await emlakJetCrawler()
 }
 

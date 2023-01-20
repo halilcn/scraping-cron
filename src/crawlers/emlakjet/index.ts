@@ -10,10 +10,6 @@ const emlakJetCrawler = async () => {
   try {
     log.info(EMLAKJET_COMPANY_NAME, 'started cron...')
 
-    const test = await getInfosOnAdvert('/ilan/tekirdag-cerkezkoy-kizilpinar-namik-kemal-mahallesi-satilik-31-12560016/')
-    console.log('test', test)
-
-    return
     const advertLinks = await getAllLinksOfAdvert()
     await Promise.all(
       advertLinks.map(async link => {
@@ -21,13 +17,16 @@ const emlakJetCrawler = async () => {
           const allItemsOnAdvert = await getInfosOnAdvert(link)
           if (isNullAllItemsOnAdvert(allItemsOnAdvert)) throw new SiteStructureChanged(EMLAKJET_COMPANY_NAME)
 
-          console.log('allItemsOnAdvert', allItemsOnAdvert)
-
-          //  await advertService.saveAdvert(convertToLowerCase(allItemsOnAdvert))
+          await advertService.saveAdvert(convertToLowerCase(allItemsOnAdvert))
         }
       })
     )
-  } catch (err) {}
+
+    log.info(EMLAKJET_COMPANY_NAME, `total advert link:${advertLinks.length}`)
+    log.info(EMLAKJET_COMPANY_NAME, 'finished cron...')
+  } catch (err: any) {
+    log.error(EMLAKJET_COMPANY_NAME, err.message)
+  }
 }
 
 export default emlakJetCrawler
