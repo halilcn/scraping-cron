@@ -41,10 +41,10 @@ const getInfosOnAdvert = async (advertLink: string): Promise<IAdvert> => {
 
     if (advertInfoTitle == EMLAKJET_ADVERT_INFO_TITLES_FOR_SCRAPE.advertId) advert.advertId = advertInfoValue
     if (advertInfoTitle == EMLAKJET_ADVERT_INFO_TITLES_FOR_SCRAPE.status) advert.status = advertInfoValue
-    if (advertInfoTitle == EMLAKJET_ADVERT_INFO_TITLES_FOR_SCRAPE.room) advert.room = advertInfoValue
+    if (advertInfoTitle == EMLAKJET_ADVERT_INFO_TITLES_FOR_SCRAPE.room) advert.room = advertInfoValue.split('').join(' ')
     if (advertInfoTitle == EMLAKJET_ADVERT_INFO_TITLES_FOR_SCRAPE.squareMetres) advert.squareMetres = parseInt(advertInfoValue.split(' ')[0])
     if (advertInfoTitle == EMLAKJET_ADVERT_INFO_TITLES_FOR_SCRAPE.buildingAge) advert.buildingAge = parseInt(advertInfoValue.split(' ')[0])
-    if (advertInfoTitle == EMLAKJET_ADVERT_INFO_TITLES_FOR_SCRAPE.currentFloor) advert.currentFloor = parseInt(advertInfoValue.split('.')[0])
+    if (advertInfoTitle == EMLAKJET_ADVERT_INFO_TITLES_FOR_SCRAPE.currentFloor) advert.currentFloor = parseInt(advertInfoValue.split('.')[0]) || null
     if (advertInfoTitle == EMLAKJET_ADVERT_INFO_TITLES_FOR_SCRAPE.furnitureStatus) advert.furnitureStatus = FURNITURE_STATUS[advertInfoValue]
   })
 
