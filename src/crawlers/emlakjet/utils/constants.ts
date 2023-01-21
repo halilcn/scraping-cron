@@ -1,4 +1,9 @@
-export const EMLAKJET_ADVERT_LINKS = ['https://www.emlakjet.com/satilik-konut/ankara/']
+export const EMLAKJET_ADVERT_LINKS = [
+  'https://www.emlakjet.com/satilik-konut/ankara?siralama=4',
+  'https://www.emlakjet.com/kiralik-konut/ankara?siralama=4',
+  'https://www.emlakjet.com/kiralik-konut/konya?siralama=4',
+  'https://www.emlakjet.com/satilik-konut/konya?siralama=4',
+]
 
 export const EMLAKJET_ADVERT_INFO_TITLES_FOR_SCRAPE = {
   advertId: 'İlan Numarası',

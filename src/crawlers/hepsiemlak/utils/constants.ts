@@ -1,4 +1,9 @@
-export const HEPSIEMLAK_ADVERT_LINKS = ['https://www.hepsiemlak.com/ankara-kiralik', 'https://www.hepsiemlak.com/ankara-satilik','https://www.hepsiemlak.com/konya-kiralik','https://www.hepsiemlak.com/konya-satilik']
+export const HEPSIEMLAK_ADVERT_LINKS = [
+  'https://www.hepsiemlak.com/ankara-kiralik?sortDirection=DESC&sortField=UPDATED_DATE',
+  'https://www.hepsiemlak.com/ankara-satilik?sortDirection=DESC&sortField=UPDATED_DATE',
+  'https://www.hepsiemlak.com/konya-kiralik?sortDirection=DESC&sortField=UPDATED_DATE',
+  'https://www.hepsiemlak.com/konya-satilik?sortDirection=DESC&sortField=UPDATED_DATE',
+]
 
 export const HEPSIEMLAK_ADVERT_INFO_TITLES_FOR_SCRAPE = {
   advertId: 'İlan no',
