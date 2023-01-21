@@ -12,3 +12,5 @@ export interface IAdvert {
   company: string | null
   link: string | null
 }
+
+export type IAdvertInfoHandler = (advertLink: string) => Promise<IAdvert>

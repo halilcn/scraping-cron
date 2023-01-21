@@ -1,5 +1,5 @@
 import { load } from 'cheerio'
-import { IAdvert } from '../../../types'
+import { IAdvert, IAdvertInfoHandler } from '../../../types'
 import getPage from '../../../utils/getPage'
 import { onlyNumbersFromString } from '../../../utils/helpers'
 import { EMLAKJET_URL, EMLAKJET_COMPANY_NAME, EMLAKJET_ADVERT_INFO_TITLES_FOR_SCRAPE } from '../utils/constants'
@@ -10,7 +10,7 @@ const FURNITURE_STATUS: any = {
   Eşyalı: 'eşyalı',
 }
 
-const getInfosOnAdvert = async (advertLink: string): Promise<IAdvert> => {
+const getInfosOnAdvert: IAdvertInfoHandler = async advertLink => {
   const advert: IAdvert = {
     advertId: null,
     status: null,
