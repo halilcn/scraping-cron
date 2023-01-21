@@ -1,7 +1,5 @@
 import log from 'npmlog'
-import advertService from '../../actions/advertService'
-import { SiteStructureChanged } from '../../utils/errors'
-import { convertToLowerCase, isNullAllItemsOnAdvert } from '../../utils/helpers'
+import handleAdvertLinks from '../../jobs/handleAdvertLinks'
 import getAllLinksOfAdvert from './jobs/getAllLinksOfAdvert'
 import getInfosOnAdvert from './jobs/getInfosOnAdvert'
 import { EMLAKJET_COMPANY_NAME } from './utils/constants'
@@ -11,16 +9,7 @@ const emlakJetCrawler = async () => {
     log.info(EMLAKJET_COMPANY_NAME, 'started cron...')
 
     const advertLinks = await getAllLinksOfAdvert()
-    await Promise.all(
-      advertLinks.map(async link => {
-        if (!(await advertService.existAdvertByLink(link))) {
-          const allItemsOnAdvert = await getInfosOnAdvert(link)
-          if (isNullAllItemsOnAdvert(allItemsOnAdvert)) throw new SiteStructureChanged(EMLAKJET_COMPANY_NAME)
-
-          await advertService.saveAdvert(convertToLowerCase(allItemsOnAdvert))
-        }
-      })
-    )
+    await handleAdvertLinks(advertLinks, getInfosOnAdvert, EMLAKJET_COMPANY_NAME)
 
     log.info(EMLAKJET_COMPANY_NAME, `total advert link:${advertLinks.length}`)
     log.info(EMLAKJET_COMPANY_NAME, 'finished cron...')
