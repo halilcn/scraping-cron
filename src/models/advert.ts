@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 
-export const FURNITURE_STATUS = ['eşyalı değil', 'eşyalı']
+export const FURNITURE_STATUS = ['eşyalı değil', 'eşyalı', null]
 
 const Advert = new Schema(
   {
