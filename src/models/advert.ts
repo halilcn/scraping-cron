@@ -1,5 +1,7 @@
 import { Schema, model } from 'mongoose'
 
+export const FURNITURE_STATUS = ['eşyalı değil', 'eşyalı']
+
 const Advert = new Schema(
   {
     advertId: {
@@ -53,6 +55,7 @@ const Advert = new Schema(
       default: null,
       trim: true,
       lowercase: true,
+      enum: FURNITURE_STATUS,
     },
     company: {
       type: String,
