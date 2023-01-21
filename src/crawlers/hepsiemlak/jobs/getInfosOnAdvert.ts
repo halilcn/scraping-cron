@@ -1,25 +1,12 @@
 import { load } from 'cheerio'
-import { IAdvert, IAdvertInfoHandler } from '../../../types'
+import { IAdvertInfoHandler } from '../../../types'
 import getPage from '../../../utils/getPage'
-import { convertToNullIfNoData, onlyNumbersFromString } from '../../../utils/helpers'
+import { convertToNullIfNoData, getDefaultAdvertInfo, onlyNumbersFromString } from '../../../utils/helpers'
 import { HEPSIEMLAK_ADVERT_INFO_TITLES_FOR_SCRAPE, HEPSIEMLAK_COMPANY_NAME, HEPSIEMLAK_URL } from '../utils/constants'
 import elementClasses from '../utils/element-classes'
 
 const getInfosOnAdvert: IAdvertInfoHandler = async advertLink => {
-  const advert: IAdvert = {
-    advertId: null,
-    status: null,
-    room: null,
-    squareMetres: null,
-    buildingAge: null,
-    price: null,
-    city: null,
-    district: null,
-    currentFloor: null,
-    furnitureStatus: null,
-    company: HEPSIEMLAK_COMPANY_NAME,
-    link: advertLink,
-  }
+  const advert = getDefaultAdvertInfo(HEPSIEMLAK_COMPANY_NAME, advertLink)
 
   const page = await getPage(`${HEPSIEMLAK_URL}${advertLink}`)
   const $ = load(page)

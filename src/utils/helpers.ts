@@ -37,3 +37,18 @@ export const convertToLowerCase = (payload: IAdvert) => {
 
   return advert
 }
+
+export const getDefaultAdvertInfo = (company: string, link: string): IAdvert => ({
+  advertId: null,
+  status: null,
+  room: null,
+  squareMetres: null,
+  buildingAge: null,
+  price: null,
+  city: null,
+  district: null,
+  currentFloor: null,
+  furnitureStatus: null,
+  company,
+  link,
+})

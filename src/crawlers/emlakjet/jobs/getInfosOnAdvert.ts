@@ -1,7 +1,7 @@
 import { load } from 'cheerio'
-import { IAdvert, IAdvertInfoHandler } from '../../../types'
+import { IAdvertInfoHandler } from '../../../types'
 import getPage from '../../../utils/getPage'
-import { onlyNumbersFromString } from '../../../utils/helpers'
+import { getDefaultAdvertInfo, onlyNumbersFromString } from '../../../utils/helpers'
 import { EMLAKJET_URL, EMLAKJET_COMPANY_NAME, EMLAKJET_ADVERT_INFO_TITLES_FOR_SCRAPE } from '../utils/constants'
 import elementClasses from '../utils/elementClasses'
 
@@ -11,20 +11,7 @@ const FURNITURE_STATUS: any = {
 }
 
 const getInfosOnAdvert: IAdvertInfoHandler = async advertLink => {
-  const advert: IAdvert = {
-    advertId: null,
-    status: null,
-    room: null,
-    squareMetres: null,
-    buildingAge: null,
-    price: null,
-    city: null,
-    district: null,
-    currentFloor: null,
-    furnitureStatus: null,
-    company: EMLAKJET_COMPANY_NAME,
-    link: advertLink,
-  }
+  const advert = getDefaultAdvertInfo(EMLAKJET_COMPANY_NAME, advertLink)
 
   const page = await getPage(`${EMLAKJET_URL}${advertLink}`)
   const $ = load(page)
