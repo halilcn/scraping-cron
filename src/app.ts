@@ -4,6 +4,7 @@ import cron from 'node-cron'
 import log from 'npmlog'
 
 import './bootstrap'
+import sendEmail from './utils/sendEmail'
 
 log.info('general', 'Cron started...')
 
@@ -13,7 +14,9 @@ const crawlers = async () => {
 }
 
 // first start
-crawlers()
+//crawlers()
+// TODO: it is temp
+sendEmail()
 
 cron.schedule('0 0 * * * *', async () => {
   await crawlers()
