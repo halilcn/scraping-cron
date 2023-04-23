@@ -4,7 +4,7 @@ import { DatabaseSaveError } from '../utils/errors'
 
 const saveAdvert = async (payload: IAdvert) => {
   try {
-    if (await Advert.exists({ advertId: payload.advertId })) return
+    if (await Advert.exists({ link: payload.link })) return
     await Advert.create(payload)
   } catch (err: any) {
     throw new DatabaseSaveError(err)
