@@ -1,34 +1,41 @@
 import nodemailer from 'nodemailer'
+import log from 'npmlog'
 
-const sendEmail = async () => {
-  let testAccount = await nodemailer.createTestAccount()
+interface ISendEmail {
+  to: string
+  subject: string
+  html: string
+  from?: string
+  text?: string
+}
 
-  // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass, // generated ethereal password
-    },
-  })
+const sendEmail = async ({ to, subject, html, text = '', from = 'ilanalarmi@example.com ' }: ISendEmail) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      host: process.env.MAIL_HOST,
+      port: Number(process.env.MAIL_PORT),
+      secure: true,
+      auth: {
+        user: process.env.MAIL_AUTH_USER,
+        pass: process.env.MAIL_AUTH_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    })
 
-  // send mail with defined transport object
-  let info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: 'halilc.2001@gmail.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world?', // plain text body
-    html: '<b>Hello world?</b>', // html body
-  })
+    const emailInfo = await transporter.sendMail({
+      text,
+      from,
+      to,
+      subject,
+      html,
+    })
 
-  console.log('Message sent: %s', info.messageId)
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-  // Preview only available when sending through an Ethereal account
-  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+    log.info('email', `email was sent: ${emailInfo.response} | ${emailInfo.accepted.join(',')}`)
+  } catch (err) {
+    log.warn('email', `email could"t be sent: ${err}`)
+  }
 }
 
 export default sendEmail

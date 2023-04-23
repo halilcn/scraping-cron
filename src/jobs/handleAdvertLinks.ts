@@ -4,16 +4,21 @@ import { SiteStructureChanged } from '../utils/errors'
 import { convertToLowerCase, isNullAllItemsOnAdvert } from '../utils/helpers'
 
 const handleAdvertLinks = async (advertLinks: string[], getInfosOnAdvert: (link: string) => Promise<IAdvert>, companyName: string) => {
-  await Promise.all(
+  const advertList: any = await Promise.all(
     advertLinks.map(async link => {
-      if (!(await advertService.existAdvertByLink(link))) {
-        const allItemsOnAdvert = await getInfosOnAdvert(link)
-        if (isNullAllItemsOnAdvert(allItemsOnAdvert)) throw new SiteStructureChanged(companyName)
+      if (await advertService.existAdvertByLink(link)) return null
 
-        await advertService.saveAdvert(convertToLowerCase(allItemsOnAdvert))
-      }
+      const allItemsOnAdvert = await getInfosOnAdvert(link)
+      if (isNullAllItemsOnAdvert(allItemsOnAdvert)) throw new SiteStructureChanged(companyName)
+
+      const convertedItemsOnAdvert = convertToLowerCase(allItemsOnAdvert)
+      await advertService.saveAdvert(convertedItemsOnAdvert)
+
+      return convertedItemsOnAdvert
     })
-  )
+  ).then(adverts => adverts.filter(advert => advert !== null))
+
+  return advertList
 }
 
 export default handleAdvertLinks

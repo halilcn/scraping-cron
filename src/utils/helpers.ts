@@ -1,3 +1,5 @@
+import { EMLAKJET_COMPANY_NAME, EMLAKJET_URL } from '../crawlers/emlakjet/utils/constants'
+import { HEPSIEMLAK_COMPANY_NAME, HEPSIEMLAK_URL } from '../crawlers/hepsiemlak/utils/constants'
 import { IAdvert } from '../types'
 
 export const onlyNumbersFromString = (text: string) => {
@@ -52,3 +54,10 @@ export const getDefaultAdvertInfo = (company: string, link: string): IAdvert => 
   company,
   link,
 })
+
+export const getHostLinkByCompanyName = (companyName: string) => {
+  if (companyName === EMLAKJET_COMPANY_NAME) return EMLAKJET_URL
+  if (companyName === HEPSIEMLAK_COMPANY_NAME) return HEPSIEMLAK_URL
+
+  return ''
+}
