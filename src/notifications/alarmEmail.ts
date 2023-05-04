@@ -20,6 +20,8 @@ const alarmEmail = async (notification: any, allAdverts: IAdvert[]) => {
         return false
       if (filters.status && advert.status && filters.status !== advert.status) return false
       if (filters.city && advert.city && advert.city !== filters.city) return false
+      if (filters.room && advert.room && advert.room !== filters.room) return false
+      if (filters.district && advert.district && advert.district !== filters.district) return false
 
       return true
     })
