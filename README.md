@@ -1,0 +1,1 @@
+It is a cron project that scrapes a few web pages related to real estate buying and selling in Turkey.
