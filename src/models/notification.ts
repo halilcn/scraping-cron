@@ -13,6 +13,9 @@ const Notification = new Schema(
     params: {
       type: Object,
     },
+    logs: {
+      type: Object,
+    },
   },
   {
     timestamps: true,

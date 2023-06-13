@@ -1,4 +1,5 @@
 import User from '../models/user'
+import Notification from '../models/notification'
 import { IAdvert } from '../types'
 import compileEmail from '../utils/compileEmail'
 import { getHostLinkByCompanyName } from '../utils/helpers'
@@ -34,11 +35,15 @@ const alarmEmail = async (notification: any, allAdverts: IAdvert[]) => {
 
   if (!user) return
 
-  sendEmail({
+  await sendEmail({
     to: user.email,
     subject: 'İlan Alarm',
     html: compiledEmail,
   })
+  await Notification.findOneAndUpdate(
+    { _id: notification.id },
+    { logs: { ...notification.logs, adverts: [...(notification.logs?.adverts ?? []), ...adverts] } }
+  )
 }
 
 export default alarmEmail
